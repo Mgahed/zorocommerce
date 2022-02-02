@@ -228,6 +228,10 @@
                         <a
                             href="{{route('all-users')}}"><i class="ti-more"></i>{{__('All users')}}</a>
                     </li>
+                    <li class="{{Request::is(app()->getLocale().'/admin/alluser/report') ? 'active' : ''}}">
+                        <a
+                            href="{{route('alluser.report')}}"><i class="ti-more"></i>{{__('Reports')}}</a>
+                    </li>
                 </ul>
             </li>
             @if (auth()->user()->role === 'admin')

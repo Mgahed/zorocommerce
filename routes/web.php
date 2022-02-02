@@ -179,7 +179,7 @@ Route::group(['prefix' => (new Mcamara\LaravelLocalization\LaravelLocalization)-
             Route::get('/view', [AdminController::class, 'AllUsers'])->name('all-users');
             Route::get('/set-admin/{id}', [AdminController::class, 'SetAdmin'])->name('SetAdmin');
             Route::get('/set-normal/{id}', [AdminController::class, 'SetNormal'])->name('SetNormal');
-            Route::get('/report', [AdminController::class, 'Report'])->name('report');
+            Route::get('/report', [AdminController::class, 'Report'])->name('alluser.report');
         });
 
         /*----- Admin Seo -----*/
