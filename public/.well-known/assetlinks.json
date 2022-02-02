@@ -1,0 +1,14 @@
+[
+    {
+        "relation": [
+            "delegate_permission/common.handle_all_urls"
+        ],
+        "target": {
+            "namespace": "android_app",
+            "package_name": "com.mobilecarestore.twa",
+            "sha256_cert_fingerprints": [
+                "8F:5B:24:EF:D7:F9:2C:A6:2F:EB:C3:20:9F:97:4D:80:29:02:FA:81:9C:D3:4B:3A:8A:32:59:38:5B:47:13:EB"
+            ]
+        }
+    }
+]
