@@ -30,7 +30,7 @@
                @php
                    $social = \App\Models\SocialMedia::findOrFail(1);
                @endphp
-                    Zoro Head Office <br>
+                    Zurro Head Office <br>
                     Email: {{$social->email}} <br>
                     Mob:  {{$social->number}}<br>
                     {{$social->address}}<br>

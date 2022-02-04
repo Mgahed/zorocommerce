@@ -88,7 +88,7 @@
                                 width="60" src="{{asset('logo.png')}}"
                                 alt="logo"> <span
                                 style="font-size: 26px; font-family: fantasy; font-weight: bold;"><span
-                                    style="color: #FDD922;">Zoro</span> <span style="color: white;">Store</span></span></a>
+                                    style="color: #FDD922;">Zurro</span> <span style="color: white;">Store</span></span></a>
                     </div>
                     <!-- /.logo -->
                     <!-- ============================================================= LOGO : END ============================================================= -->

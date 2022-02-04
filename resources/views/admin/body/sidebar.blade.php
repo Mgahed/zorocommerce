@@ -8,7 +8,7 @@
                     <!-- logo for regular state and mobile devices -->
                     <div class="d-flex align-items-center justify-content-center">
                         <img class="rounded-circle" src="{{asset('logo.png')}}" width="50" height="50" alt="">
-                        <h3><b>Zoro</b> Store</h3>
+                        <h3><b>Zurro</b> Store</h3>
                     </div>
                 </a>
             </div>
