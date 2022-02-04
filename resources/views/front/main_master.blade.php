@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#157ED2"/>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="#0F6CB2">
-    <meta name="apple-mobile-web-app-title" content="Zoro Store">
+    <meta name="apple-mobile-web-app-title" content="Zurro Store">
     {{--    End pwa--}}
 <!-- Meta -->
     <meta charset="utf-8">
