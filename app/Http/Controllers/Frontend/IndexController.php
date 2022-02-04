@@ -44,37 +44,37 @@ class IndexController extends Controller
     public function index()
     {
 //        $blogpost = BlogPost::latest()->get();
-        //$products = Product::/*where('status', 1)->*/ orderBy('id', 'DESC')->limit(6)->get();
+        $products = Product::/*where('status', 1)->*/ orderBy('id', 'DESC')->limit(6)->get();
         $sliders = Slider::where('status', 1)->orderBy('id', 'DESC')->limit(3)->get();
         $categories = Category::orderBy('name_en', 'ASC')->get();
         $all = Category::where('name_en', 'all')->first();
 
-        return view('front.index', compact('categories', 'all', 'sliders'));
-//        $special_offer = Product::where('special_offer', 1)->orderBy('id', 'DESC')->limit(6)->get();
+//        return view('front.index', compact('categories', 'all', 'sliders'));
+        $special_offer = Product::where('special_offer', 1)->orderBy('id', 'DESC')->limit(6)->get();
 //
-//        $skip_product_0 = null;
-//        $skip_product_1 = null;
-//        $skip_product_2 = null;
-//        $skip_category_0 = Category::skip(0)->first();
-//        if ($skip_category_0) {
-//            $skip_product_0 = Product::/*where('status', 1)->*/ where('category_id', $skip_category_0->id)->orderBy('id', 'DESC')->get();
-//        }
-//
-//        $skip_category_1 = Category::skip(1)->first();
-//        if ($skip_category_1) {
-//            $skip_product_1 = Product::/*where('status', 1)->*/ where('category_id', $skip_category_1->id)->orderBy('id', 'DESC')->get();
-//        }
-//
-//        $skip_category_2 = Category::skip(2)->first();
-//        if ($skip_category_2) {
-//            $skip_product_2 = Product::/*where('status', 1)->*/ where('category_id', $skip_category_2->id)->orderBy('id', 'DESC')->get();
-//        }
+        $skip_product_0 = null;
+        $skip_product_1 = null;
+        $skip_product_2 = null;
+        $skip_category_0 = Category::skip(0)->first();
+        if ($skip_category_0) {
+            $skip_product_0 = Product::/*where('status', 1)->*/ where('category_id', $skip_category_0->id)->orderBy('id', 'DESC')->get();
+        }
+
+        $skip_category_1 = Category::skip(1)->first();
+        if ($skip_category_1) {
+            $skip_product_1 = Product::/*where('status', 1)->*/ where('category_id', $skip_category_1->id)->orderBy('id', 'DESC')->get();
+        }
+
+        $skip_category_2 = Category::skip(2)->first();
+        if ($skip_category_2) {
+            $skip_product_2 = Product::/*where('status', 1)->*/ where('category_id', $skip_category_2->id)->orderBy('id', 'DESC')->get();
+        }
 
 
         // return $skip_category->id;
         // die();
 
-//        return view('front.index', compact('categories', 'sliders', 'products', /*'featured', 'hot_deals',*/ 'special_offer', /*'special_deals',*/ 'skip_category_0', 'skip_product_0', 'skip_category_1', 'skip_product_1', 'skip_category_2', 'skip_product_2'/*, 'skip_brand_1', 'skip_brand_product_1', 'blogpost'*/));
+        return view('front.index', compact('all', 'categories', 'sliders', 'products', /*'featured', 'hot_deals',*/ 'special_offer', /*'special_deals',*/ 'skip_category_0', 'skip_product_0', 'skip_category_1', 'skip_product_1', 'skip_category_2', 'skip_product_2'/*, 'skip_brand_1', 'skip_brand_product_1', 'blogpost'*/));
 
     }
 
