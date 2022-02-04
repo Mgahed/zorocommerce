@@ -128,9 +128,6 @@
                                 </x-jet-dropdown-link>
                             </form>
                         </li>
-                        <li class="user-body"><a href="{{route('light.theme')}}">Light</a></li>
-                        <li class="user-body"><a href="{{route('dark.theme')}}">Dark</a></li>
-                        <li class="user-body"><a href="{{route('mint.theme')}}">Mint</a></li>
                     </ul>
                 </li>
 
