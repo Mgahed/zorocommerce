@@ -1,14 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="{{app()->getLocale() === 'en' ? 'ltr' : 'rtl'}}">
 <head>
-    {{--    pwa--}}
-    <link rel="manifest" href="{{asset('manifest.json')}}">
-    <link rel="apple-touch-icon" href="{{asset('images/icon-96x96.png')}}">
-    <meta name="theme-color" content="#157ED2"/>
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="#0F6CB2">
-    <meta name="apple-mobile-web-app-title" content="Zurro Store">
-    {{--    End pwa--}}
 <!-- Meta -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
