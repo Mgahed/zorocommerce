@@ -338,7 +338,7 @@ class IndexController extends Controller
             'msg' => $request->msg
         ];
 
-        Mail::to('info@mobilecarestore.com')->send(new ContactUs($email_data));
+        Mail::to('info@zurrostore.com')->send(new ContactUs($email_data));
 
         $notification = array(
             'message' => __('Email sent successfully'),

@@ -25,10 +25,13 @@
                     <h2 style="color: #157ED2; font-size: 26px;"><strong>Zoro Store</strong></h2>
                 </td>
                 <td style="float: right;">
+                    @php
+                        $social = \App\Models\SocialMedia::findOrFail(1);
+                    @endphp
                     Zoro Head Office <br>
-                    Email:support@mobilecarestore.com <br>
-                    Mob: 01095226151 <br>
-                    Giza, Sheikh zaid <br>
+                    Email: {{$social->email}} <br>
+                    Mob:  {{$social->number}}<br>
+                    {{$social->address}}<br>
                 </td>
             </tr>
 

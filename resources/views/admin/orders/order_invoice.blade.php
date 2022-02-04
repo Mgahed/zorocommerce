@@ -27,10 +27,13 @@
                 </td>
                 <td style="float: right;">
             <span>
-               Zoro Head Office <br>
-               Email:support@mobilecarestore.com <br>
-               Mob: 01095226151 <br>
-               Giza, Sheikh zaid <br>
+               @php
+                   $social = \App\Models\SocialMedia::findOrFail(1);
+               @endphp
+                    Zoro Head Office <br>
+                    Email: {{$social->email}} <br>
+                    Mob:  {{$social->number}}<br>
+                    {{$social->address}}<br>
             </span>
                 </td>
             </tr>

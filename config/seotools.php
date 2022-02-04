@@ -9,7 +9,7 @@ return [
          * The default configurations to be used by the meta generator.
          */
         'defaults'       => [
-            'title'        => "Mobile Care Store", // set false to total remove
+            'title'        => "Zoro Store", // set false to total remove
             'titleBefore'  => false, // Put defaults.title before page title, like 'Mr Technawy - Dashboard'
             'description'  => 'Ecommerce', // set false to total remove
             'separator'    => ' - ',
@@ -36,7 +36,7 @@ return [
          * The default configurations to be used by the opengraph generator.
          */
         'defaults' => [
-            'title'       => 'Mobile Care Store', // set false to total remove
+            'title'       => 'Zoro Store', // set false to total remove
             'description' => 'Ecommerce', // set false to total remove
             'url'         => null, // Set null for using Url::current(), set false to total remove
             'type'        => null,
@@ -58,7 +58,7 @@ return [
          * The default configurations to be used by the json-ld generator.
          */
         'defaults' => [
-            'title'       => 'Mobile Care Store', // set false to total remove
+            'title'       => 'Zoro Store', // set false to total remove
             'description' => 'Ecommerce', // set false to total remove
             'url'         => false, // Set null for using Url::current(), set false to total remove
             'type'        => 'WebPage',
