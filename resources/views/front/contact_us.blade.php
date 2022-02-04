@@ -9,8 +9,8 @@
                 <div class="row">
                     <div class="col-md-12 contact-map outer-bottom-vs">
                         <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d371.01845084446563!2d30.982855239013507!3d30.033781508290833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x145859bd7a44e109%3A0x3217075113096c85!2z2YbYp9mB2YjYsdipINin2YTYp9mB2YI!5e0!3m2!1sen!2seg!4v1639430215253!5m2!1sen!2seg"
-                            width="600" height="450" style="border:0"></iframe>
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13648.751676875776!2d29.93325133181208!3d31.215522703542025!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14f5c4919c447a91%3A0xd0f971e233ebf6c9!2sSmouha%2C%20Ezbet%20Saad%2C%20Sidi%20Gaber%2C%20Alexandria%20Governorate!5e0!3m2!1sen!2seg!4v1644003592732!5m2!1sen!2seg"
+                            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                     </div>
                     <form action="{{route('contact-us')}}" method="post">
                         @csrf
@@ -71,11 +71,13 @@
                         </div>
                         <div class="clearfix address">
                             <span class="contact-i"><i class="fa fa-map-marker"></i></span>
-                            <span class="contact-span"><a href="{{$social->google_map_address}}"><p>{{$social->address}}</p></a></span>
+                            <span class="contact-span"><a
+                                    href="{{$social->google_map_address}}"><p>{{$social->address}}</p></a></span>
                         </div>
                         <div class="clearfix phone-no">
                             <span class="contact-i"><i class="fa fa-mobile"></i></span>
-                            <span class="contact-span"><a href="tel:+2{{$social->number}}">{{$social->number}}</a></span>
+                            <span class="contact-span"><a
+                                    href="tel:+2{{$social->number}}">{{$social->number}}</a></span>
                         </div>
                         <div class="clearfix email">
                             <span class="contact-i"><i class="fa fa-envelope"></i></span>
