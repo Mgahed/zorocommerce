@@ -28,7 +28,7 @@
 
                                         <div class="row"> <!-- start 1st row  -->
 
-                                            <div class="col-md-4">
+                                            <div class="col-md-8">
                                                 <div class="form-group">
                                                     <h5>{{__('Select Category')}} <span class="text-danger">*</span>
                                                     </h5>
@@ -55,8 +55,8 @@
                                                 </div>
                                             </div> <!-- end col md 4 -->
 
-
-                                            <div class="col-md-4">
+                                            <input type="hidden" name="subcategory_id" value="null">
+                                            {{--<div class="col-md-4">
                                                 <div class="form-group">
                                                     <h5>{{__('Select SubCategory')}} <span class="text-danger">*</span>
                                                     </h5>
@@ -77,7 +77,7 @@
                                                         @enderror
                                                     </div>
                                                 </div>
-                                            </div> <!-- end col md 4 -->
+                                            </div> <!-- end col md 4 -->--}}
 
 
                                             <div class="col-md-4">
@@ -491,29 +491,6 @@
 
 
     </div>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('select[name="category_id"]').on('change', function () {
-                var category_id = $(this).val();
-                if (category_id) {
-                    $.ajax({
-                        url: "{{  url('/admin/category/sub/ajax') }}/" + category_id,
-                        type: "GET",
-                        dataType: "json",
-                        success: function (data) {
-                            var d = $('select[name="subcategory_id"]').empty().append('<option value="null" selected="" >{{__('non')}}</option>');
-                            $.each(data, function (key, value) {
-                                $('select[name="subcategory_id"]').append('<option value="' + value.id + '">' + value.name_en + ' - ' + value.name_ar + '</option>');
-                            });
-                        },
-                    });
-                } else {
-                    alert('{{__('Error')}}');
-                }
-            });
-        });
-    </script>
 
 
     <script type="text/javascript">

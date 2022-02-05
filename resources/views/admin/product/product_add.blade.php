@@ -28,7 +28,7 @@
 
                                         <div class="row"> <!-- start 1st row  -->
 
-                                            <div class="col-md-4">
+                                            <div class="col-md-8">
                                                 <div class="form-group">
                                                     <h5>{{__('Select Category')}} <span class="text-danger">*</span></h5>
                                                     <div class="controls">
@@ -47,12 +47,12 @@
                                                 </div>
                                             </div> <!-- end col md 4 -->
 
-
-                                            <div class="col-md-4">
+                                            <input type="hidden" name="subcategory_id" value="null">
+                                            {{--<div class="col-md-4">
                                                 <div class="form-group">
-                                                    <h5>{{__('Select SubCategory')}} {{--<span class="text-danger">*</span>--}}</h5>
+                                                    <h5>{{__('Select SubCategory')}} --}}{{--<span class="text-danger">*</span>--}}{{--</h5>
                                                     <div class="controls">
-                                                        <select name="subcategory_id" class="form-control" {{--required=""--}}>
+                                                        <select name="subcategory_id" class="form-control" --}}{{--required=""--}}{{-->
                                                             <option selected="" >{{__('non')}}</option>
                                                         </select>
                                                         @error('subcategory_id')
@@ -60,7 +60,7 @@
                                                         @enderror
                                                     </div>
                                                 </div>
-                                            </div> <!-- end col md 4 -->
+                                            </div>--}} <!-- end col md 4 -->
 
 
                                             <div class="col-md-4">

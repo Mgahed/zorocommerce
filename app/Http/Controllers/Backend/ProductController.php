@@ -216,7 +216,7 @@ class ProductController extends Controller
         $multiImgs = MultiImg::where('product_id', $id)->get();
 
         $categories = Category::orderBy('name_en', 'asc')->get();
-        $product = Product::with('category')->with('subcategory')->findOrFail($id);
+        $product = Product::with('category')/*->with('subcategory')*/->findOrFail($id);
 
         return view('admin.product.product_edit', compact('product', 'categories', 'multiImgs'));
     }
