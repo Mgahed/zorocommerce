@@ -177,6 +177,14 @@ class AdminController extends Controller
 
     public function Report()
     {
+        $orders = Order::count('id');
+        if (!$orders) {
+            $notification = [
+                'message' => __('No orders'),
+                'alert-type' => 'error'
+            ];
+            return redirect()->back()->with($notification);
+        }
         $data = User::select(DB::raw("count(orders.id) as count"), DB::raw("SUM(orders.amount) as sum"), 'users.name as name', 'users.email as email', 'users.phone as phone')
             ->join('orders', 'orders.user_id', '=', 'users.id')
             ->where('orders.delivered_date', '!=', null)
