@@ -101,6 +101,8 @@ class AdminController extends Controller
             'tiktok' => $request->tiktok,
             'youtube' => $request->youtube,
             'whatsapp' => $request->whatsapp,
+            'linkedin' => $request->linkedin,
+            'twitter' => $request->twitter,
             'email' => $request->email,
             'number' => $request->number,
             'address' => $request->address,

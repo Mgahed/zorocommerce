@@ -94,6 +94,12 @@
                     @if ($social->whatsapp)
                         <li class="whatsapp pull-left"><a target="_blank" rel="nofollow" href="{{$social->whatsapp}}" title="Whatsapp"></a></li>
                     @endif
+                    @if ($social->linkedin)
+                        <li class="linkedin pull-left"><a target="_blank" rel="nofollow" href="{{$social->linkedin}}" title="LinkedIn"></a></li>
+                    @endif
+                    @if ($social->twitter)
+                        <li class="twitter pull-left"><a target="_blank" rel="nofollow" href="{{$social->twitter}}" title="Twitter"></a></li>
+                    @endif
                 </ul>
             </div>
             <div class="col-xs-12 col-sm-6 no-padding">

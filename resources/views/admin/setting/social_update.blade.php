@@ -66,6 +66,22 @@
                                                 </div>
 
                                                 <div class="form-group">
+                                                    <h5 style="float: left;"><i class="mdi mdi-linkedin"></i> {{__('LinkedIn')}} </h5>
+                                                    <div class="controls">
+                                                        <input type="text" style="direction: ltr;" name="linkedin" id="linkedin"
+                                                               class="form-control" value="{{ $social->linkedin }}"/>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <h5 style="float: left;"><i class="mdi mdi-twitter"></i> {{__('Twitter')}} </h5>
+                                                    <div class="controls">
+                                                        <input type="text" style="direction: ltr;" name="twitter" id="twitter"
+                                                               class="form-control" value="{{ $social->twitter }}"/>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
                                                     <h5 style="float: left;"><i class="mdi mdi-email"></i> {{__('Email')}} </h5>
                                                     <div class="controls">
                                                         <input type="text" style="direction: ltr;" name="email" id="email"

@@ -3262,6 +3262,28 @@ age-container #owl-main .owl-next {
     padding: 0;
     background: #41DE5D !important;
 }
+.social .linkedin a:before {
+    content: "\f08c";
+    font-family: FontAwesome;
+}
+.social .linkedin a {
+    font-size: 20px;
+    display: inline-block!important;
+    text-align: center;
+    padding: 0;
+    background: #0077B5 !important;
+}
+.social .twitter a:before {
+    content: "\f099";
+    font-family: FontAwesome;
+}
+.social .twitter a {
+    font-size: 20px;
+    display: inline-block!important;
+    text-align: center;
+    padding: 0;
+    background: #5DA9DD !important;
+}
 .social h4 {
     margin: 25px 0px 0px 0;
 }
