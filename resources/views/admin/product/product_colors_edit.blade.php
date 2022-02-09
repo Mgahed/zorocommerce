@@ -118,6 +118,16 @@
                 alert("{{__('total quantity must be not more than')}}" + totalqty);
                 location.reload();
             }
+        }
+
+        setInterval(check, 500);
+
+        function check() {
+            var sum = 0;
+            var totalqty = parseFloat($('.totalqty').text());
+            $('input[name="qty"]').each(function () {
+                sum += parseFloat($(this).val());  // Or this.innerHTML, this.innerText
+            });
             if (totalqty !== sum) {
                 $('.update-btn').css('display', 'none');
             } else {
