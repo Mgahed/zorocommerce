@@ -8,6 +8,7 @@ use App\Mail\ShippingMail;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
+use App\Models\ProductColor;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -212,6 +213,10 @@ class OrderController extends Controller
             $current_product = Product::findOrFail($item->product_id);
             Product::where('code', $current_product->code)
                 ->update(['quantity' => DB::raw('quantity-' . $item->qty)]);
+
+            ProductColor::where('product_color_id', $item->product_id)->where(function ($query) use ($item) {
+                $query->where('color_en', '=', $item->color)->orWhere('color_ar', '=', $item->color);
+            })->update(['qty' => DB::raw('qty-' . $item->qty)]);
         }
 
         Order::findOrFail($order_id)->update([
@@ -271,7 +276,7 @@ class OrderController extends Controller
         $order = Order::with('division', 'district', 'user')->where('id', $order_id)->first();
         $orderItem = OrderItem::with('product')->where('order_id', $order_id)->orderBy('id', 'DESC')->get();
 
-        return view('admin.orders.shipping_invoice' , compact('order', 'orderItem'));
+        return view('admin.orders.shipping_invoice', compact('order', 'orderItem'));
 
         $pdf = PDF::loadView('admin.orders.shipping_invoice', compact('order', 'orderItem'))->setPaper('a4')->setOptions([
             'tempDir' => public_path(),

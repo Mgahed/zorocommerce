@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Coupon;
 use App\Models\PriceCoupon;
 use App\Models\Product;
+use App\Models\ProductColor;
 use App\Models\ProductCoupon;
 use App\Models\ShipDivision;
 use App\Models\UserCoupon;
@@ -21,6 +22,20 @@ class CartController extends Controller
         /*return $request;*/
         if (Session::has('coupon')) {
             Session::forget('coupon');
+        }
+
+        if ($request->lang === 'en') {
+            $product = ProductColor::where('color_en', $request->color)->where('product_color_id', $id)->first();
+        } else {
+            $product = ProductColor::where('color_ar', $request->color)->where('product_color_id', $id)->first();
+        }
+        if ($product->qty < $request->quantity) {
+            if ($request->lang === 'en') {
+                $message = 'Color not available, You can choose another color';
+            } else {
+                $message = 'اللون غير متوفر ، يمكنك اختيار لون آخر';
+            }
+            return response()->json(['error' => $message]);
         }
 
         $product = Product::findOrFail($id);
