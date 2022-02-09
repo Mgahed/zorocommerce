@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\MultiImg;
 use App\Models\Product;
+use App\Models\ProductColor;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -68,84 +69,84 @@ class ProductController extends Controller
         return view('admin.product.product_add', compact('categories'));
     }
 
-    public function DuplicateProduct(Request $request)
-    {
-//        return $request;
-        $check = Product::with('multiimg')->findOrFail($request->product_id);
-        $flag = true;
-        $check_product = Product::where('code', $check->code)->get();
-        foreach ($check_product as $product) {
-            if ($product->category_id == $request->category_id) {
-                $flag = false;
-            }
-        }
-//        return $flag;
-        if ($check->category_id == $request->category_id || !$flag) {
-            $notification = [
-                'message' => __('Product already have this category'),
-                'alert-type' => 'error'
-            ];
-            return redirect()->back()->with($notification);
-        }
-        /*----- Duplicate -----*/
-        $oldPath = $check->thumbnail;
-        $fileExtension = \File::extension($oldPath);
-        $newName = md5(rand()) . strtotime(Carbon::now()) . '.' . $fileExtension;
-//        $newName = 'new file.'.$fileExtension;
-//        $newPathWithName = 'images/'.$newName;
-        $newPathWithName = public_path('/upload/products/thumbnail/' . $newName);
-        \File::copy(public_path($oldPath), $newPathWithName);
-//        $thumbnail_img = $request->file('thumbnail');
-//        Image::Make($thumbnail_img)->resize(400, 400)->save(public_path('/upload/products/thumbnail/' . $name_gen));
-//        $save_thumbnail_img = 'upload/products/thumbnail/' . $name_gen;
-        $product = Product::create([
-            'name_en' => strtolower($check->name_en),
-            'name_ar' => $check->name_ar,
-            'code' => $check->code,
-            'quantity' => $check->quantity,
-            'color_en' => $check->color_en,
-            'color_ar' => $check->color_ar,
-            'sell_price' => $check->sell_price,
-            'discount_price' => $check->discount_price,
-            'short_descp_en' => $check->short_descp_en,
-            'short_descp_ar' => $check->short_descp_ar,
-            'long_descp_en' => $check->long_descp_en,
-            'long_descp_ar' => $check->long_descp_ar,
-            'thumbnail' => 'upload/products/thumbnail/' . $newName,
-            'special_offer' => $check->special_offer ? $check->special_offer : 0,
-            'best_seller' => $check->best_seller ? $check->best_seller : 0,
-            'brand' => $check->brand,
-            'category_id' => $request->category_id,
-            'subcategory_id' => null,
-        ]);
-
-        /*----- Multi IMG Upload -----*/
-//        $multi_imgs = $request->file('multi_img');
-        $product_id = Product::orderBy('id', 'desc')->first();
-        if ($check->multiimg) {
-            foreach ($check->multiimg as $multi_img) {
-                $oldPath = $multi_img->name;
-                $fileExtension = \File::extension($oldPath);
-                $newName = md5(rand()) . strtotime(Carbon::now()) . '.' . $fileExtension;
-                $newPathWithName = public_path('/upload/products/multi-image/' . $newName);
-                \File::copy(public_path($oldPath), $newPathWithName);
-
-                /*$name_gen = md5($multi_img->getClientOriginalName()) . strtotime(Carbon::now()) . '.' . $multi_img->getClientOriginalExtension();
-                Image::Make($multi_img)->resize(400, 400)->save(public_path('/upload/products/multi-image/' . $name_gen));
-                $save_multi_img = 'upload/products/multi-image/' . $name_gen;*/
-
-                MultiImg::create([
-                    'product_id' => $product_id->id,
-                    'name' => 'upload/products/multi-image/' . $newName,
-                ]);
-            }
-        }
-        $notification = [
-            'message' => __('Product added successfully'),
-            'alert-type' => 'success'
-        ];
-        return redirect()->back()->with($notification);
-    }
+//    public function DuplicateProduct(Request $request)
+//    {
+////        return $request;
+//        $check = Product::with('multiimg')->findOrFail($request->product_id);
+//        $flag = true;
+//        $check_product = Product::where('code', $check->code)->get();
+//        foreach ($check_product as $product) {
+//            if ($product->category_id == $request->category_id) {
+//                $flag = false;
+//            }
+//        }
+////        return $flag;
+//        if ($check->category_id == $request->category_id || !$flag) {
+//            $notification = [
+//                'message' => __('Product already have this category'),
+//                'alert-type' => 'error'
+//            ];
+//            return redirect()->back()->with($notification);
+//        }
+//        /*----- Duplicate -----*/
+//        $oldPath = $check->thumbnail;
+//        $fileExtension = \File::extension($oldPath);
+//        $newName = md5(rand()) . strtotime(Carbon::now()) . '.' . $fileExtension;
+////        $newName = 'new file.'.$fileExtension;
+////        $newPathWithName = 'images/'.$newName;
+//        $newPathWithName = public_path('/upload/products/thumbnail/' . $newName);
+//        \File::copy(public_path($oldPath), $newPathWithName);
+////        $thumbnail_img = $request->file('thumbnail');
+////        Image::Make($thumbnail_img)->resize(400, 400)->save(public_path('/upload/products/thumbnail/' . $name_gen));
+////        $save_thumbnail_img = 'upload/products/thumbnail/' . $name_gen;
+//        $product = Product::create([
+//            'name_en' => strtolower($check->name_en),
+//            'name_ar' => $check->name_ar,
+//            'code' => $check->code,
+//            'quantity' => $check->quantity,
+//            'color_en' => $check->color_en,
+//            'color_ar' => $check->color_ar,
+//            'sell_price' => $check->sell_price,
+//            'discount_price' => $check->discount_price,
+//            'short_descp_en' => $check->short_descp_en,
+//            'short_descp_ar' => $check->short_descp_ar,
+//            'long_descp_en' => $check->long_descp_en,
+//            'long_descp_ar' => $check->long_descp_ar,
+//            'thumbnail' => 'upload/products/thumbnail/' . $newName,
+//            'special_offer' => $check->special_offer ? $check->special_offer : 0,
+//            'best_seller' => $check->best_seller ? $check->best_seller : 0,
+//            'brand' => $check->brand,
+//            'category_id' => $request->category_id,
+//            'subcategory_id' => null,
+//        ]);
+//
+//        /*----- Multi IMG Upload -----*/
+////        $multi_imgs = $request->file('multi_img');
+//        $product_id = Product::orderBy('id', 'desc')->first();
+//        if ($check->multiimg) {
+//            foreach ($check->multiimg as $multi_img) {
+//                $oldPath = $multi_img->name;
+//                $fileExtension = \File::extension($oldPath);
+//                $newName = md5(rand()) . strtotime(Carbon::now()) . '.' . $fileExtension;
+//                $newPathWithName = public_path('/upload/products/multi-image/' . $newName);
+//                \File::copy(public_path($oldPath), $newPathWithName);
+//
+//                /*$name_gen = md5($multi_img->getClientOriginalName()) . strtotime(Carbon::now()) . '.' . $multi_img->getClientOriginalExtension();
+//                Image::Make($multi_img)->resize(400, 400)->save(public_path('/upload/products/multi-image/' . $name_gen));
+//                $save_multi_img = 'upload/products/multi-image/' . $name_gen;*/
+//
+//                MultiImg::create([
+//                    'product_id' => $product_id->id,
+//                    'name' => 'upload/products/multi-image/' . $newName,
+//                ]);
+//            }
+//        }
+//        $notification = [
+//            'message' => __('Product added successfully'),
+//            'alert-type' => 'success'
+//        ];
+//        return redirect()->back()->with($notification);
+//    }
 
     public function StoreProduct(Request $request)
     {
@@ -154,6 +155,15 @@ class ProductController extends Controller
         $validator = Validator::make($request->all(), $rules, $customMSG);
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput($request->all());
+        }
+        $colors_en = explode(',', $request->color_en);
+        $colors_ar = explode(',', $request->color_ar);
+        if (count($colors_en) != count($colors_ar)) {
+            $notification = [
+                'message' => __('Numbers of colors must be same'),
+                'alert-type' => 'error'
+            ];
+            return redirect()->back()->with($notification);
         }
 
 //        return $request;
@@ -182,6 +192,17 @@ class ProductController extends Controller
             'category_id' => $request->category_id,
             'subcategory_id' => $request->subcategory_id == 'null' ? null : $request->subcategory_id
         ]);
+
+        /*----- create color in productcolors table -----*/
+        $latest_product_id = Product::latest()->first('id');
+        foreach ($colors_en as $key => $item) {
+            ProductColor::create([
+                'color_en' => $item,
+                'color_ar' => $colors_ar[$key],
+                'qty' => $request->quantity / count($colors_en),
+                'product_color_id' => $latest_product_id->id
+            ]);
+        }
 
         /*----- Multi IMG Upload -----*/
         $multi_imgs = $request->file('multi_img');
@@ -216,7 +237,7 @@ class ProductController extends Controller
         $multiImgs = MultiImg::where('product_id', $id)->get();
 
         $categories = Category::orderBy('name_en', 'asc')->get();
-        $product = Product::with('category')/*->with('subcategory')*/->findOrFail($id);
+        $product = Product::with('category')/*->with('subcategory')*/ ->findOrFail($id);
 
         return view('admin.product.product_edit', compact('product', 'categories', 'multiImgs'));
     }
@@ -235,8 +256,8 @@ class ProductController extends Controller
             'name_ar' => $request->name_ar,
             'code' => $request->code,
             'quantity' => $request->quantity,
-            'color_en' => $request->color_en,
-            'color_ar' => $request->color_ar,
+            /*'color_en' => $request->color_en,
+            'color_ar' => $request->color_ar,*/
             'sell_price' => $request->sell_price,
             'discount_price' => $request->discount_price,
             'short_descp_en' => $request->short_descp_en,
@@ -414,6 +435,26 @@ class ProductController extends Controller
             'message' => __('Product activated successfully'),
             'alert-type' => 'info'
         ];
+        return redirect()->back()->with($notification);
+    }
+
+    public function ProductColorEdit($product_id)
+    {
+        $qty = Product::findOrFail($product_id)->quantity;
+        $product_colors = ProductColor::where('product_color_id', $product_id)->get();
+        return view('admin.product.product_colors_edit', compact('product_colors', 'qty'));
+    }
+
+    public function ProductColorUpdate($id, Request $request)
+    {
+        ProductColor::findOrFail($id)->update([
+            'qty' => $request->qty
+        ]);
+
+        $notification = [
+                'message' => __('Quantity Updated Successfully'),
+                'alert-type' => 'info'
+            ];
         return redirect()->back()->with($notification);
     }
 }

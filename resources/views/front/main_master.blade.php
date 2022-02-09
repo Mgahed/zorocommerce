@@ -102,12 +102,6 @@
             }
         }
     </style>
-    <script type="module">
-        import 'https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate';
-
-        const el = document.createElement('pwa-update');
-        document.body.appendChild(el);
-    </script>
 </head>
 <body class="cnt-home">
 <!-- ============================================== HEADER ============================================== -->
@@ -584,23 +578,6 @@
     /*----- End Apply coupon -----*/
 
 </script>
-<script>
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('{{asset('pwabuilder-sw.js')}}')
-            .then(reg => console.log('sw registerd', reg))
-            .catch(err => console.log('sw registerd error', err))
-    }
-    var deferredPrompt;
 
-    if (!window.Promise) {
-        window.Promise = Promise;
-    }
-    window.addEventListener('beforeinstallprompt', function (event) {
-        console.log('beforeinstallprompt fired');
-        event.preventDefault();
-        deferredPrompt = event;
-        return false;
-    });
-</script>
 </body>
 </html>

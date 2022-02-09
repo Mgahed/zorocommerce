@@ -70,7 +70,8 @@
 
                                             <td>
                                                 @if ($item->free_shipping)
-                                                    <span style="white-space: nowrap;">{{date('Y-m-d', strtotime($item->free_shipping))}}</span>
+                                                    <span
+                                                        style="white-space: nowrap;">{{date('Y-m-d', strtotime($item->free_shipping))}}</span>
                                                 @else
                                                     <span class="text-danger">{{__('No free shipping')}}</span>
                                                 @endif
@@ -88,10 +89,10 @@
                                                    title="Delete Data" id="delete">
                                                     <i class="fa fa-trash"></i></a>
 
-                                                <button onclick="openModal({{$item->id}})" type="button"
-                                                        class="btn btn-success" data-target="#modal-center">
-                                                    <i class="mdi mdi-library-plus"></i>
-                                                </button>
+                                                <a href="{{route('product.color.edit',$item->id)}}"
+                                                   class="btn btn-success">
+                                                    <i class="mdi mdi-format-color-fill"></i>
+                                                </a>
 
                                                 @if ($item->deleted_at)
                                                     <a href="{{ route('product.up',$item->id) }}"
@@ -135,7 +136,7 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal center-modal fade" id="modal-center" tabindex="-1">
+    {{--<div class="modal center-modal fade" id="modal-center" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -174,7 +175,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>--}}
     <!-- /.modal -->
 
     <!-- free shipping Modal -->
@@ -191,7 +192,8 @@
                     <form action="{{route('product.free.shipping')}}" method="post">
                         <h5>{{__('Date')}} <span class="text-danger">*</span></h5>
                         <div class="controls">
-                            <input min="{{\Carbon\Carbon::now()->format('Y-m-d')}}" type="date" name="date" class="form-control" required="">
+                            <input min="{{\Carbon\Carbon::now()->format('Y-m-d')}}" type="date" name="date"
+                                   class="form-control" required="">
                             @error('date')
                             <span class="text-danger">{{ $message }}</span>
                             @enderror

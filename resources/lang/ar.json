@@ -1029,7 +1029,9 @@
     "Cannot change logo": "لا يمكن تغيير الشعار",
     "Change logo": "تغيير الشعار",
     "Select image": "اختر صورة",
-    "Orders number": "عدد الطلبات"
-
-
+    "Orders number": "عدد الطلبات",
+    "Numbers of colors must be same": "يجب أن تكون أعداد الألوان متطابقة",
+    "Edit Colors": "تعديل الكمية للألوان",
+    "total quantity must be not more than": "يجب ألا تزيد الكمية الإجمالية عن",
+    "Quantity Updated Successfully": "تم تحديث الكمية بنجاح"
 }
