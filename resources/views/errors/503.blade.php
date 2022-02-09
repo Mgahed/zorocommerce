@@ -5,7 +5,7 @@
 {{--@section('message', __('Service Unavailable'))--}}
 <html>
 <head>
-    <title>Zurro Store</title>
+    <title>Zorro Store</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         @import "https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,400italic";

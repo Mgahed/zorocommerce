@@ -22,13 +22,13 @@
             <tr>
                 <td valign="top">
                 <!-- {{-- <img src="" alt="" width="150"/> --}} -->
-                    <h2 style="color: #157ED2; font-size: 26px;"><strong>Zurro Store</strong></h2>
+                    <h2 style="color: #157ED2; font-size: 26px;"><strong>Zorro Store</strong></h2>
                 </td>
                 <td style="float: right;">
                     @php
                         $social = \App\Models\SocialMedia::findOrFail(1);
                     @endphp
-                    Zurro Head Office <br>
+                    Zorro Head Office <br>
                     Email: {{$social->email}} <br>
                     Mob:  {{$social->number}}<br>
                     {{$social->address}}<br>
