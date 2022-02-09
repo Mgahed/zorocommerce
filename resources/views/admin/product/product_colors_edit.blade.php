@@ -81,7 +81,8 @@
 
                                             <div class="col-3">
                                                 <div class="text-xs-right">
-                                                    <input type="submit" class="btn btn-rounded btn-primary mt-5"
+                                                    <input type="submit"
+                                                           class="btn btn-rounded btn-primary mt-5 update-btn"
                                                            value="{{__('Update')}}">
                                                 </div>
                                             </div>
@@ -116,6 +117,11 @@
             if (sum > totalqty) {
                 alert("{{__('total quantity must be not more than')}}" + totalqty);
                 location.reload();
+            }
+            if (totalqty !== sum) {
+                $('.update-btn').css('display', 'none');
+            } else {
+                $('.update-btn').css('display', 'block');
             }
         }
     </script>
