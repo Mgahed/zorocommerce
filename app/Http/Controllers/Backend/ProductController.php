@@ -475,4 +475,29 @@ class ProductController extends Controller
         ]);
         return redirect()->back();
     }
+
+    public function ProductMultiimgAdd(Request $request)
+    {
+
+        /*----- Multi IMG Upload -----*/
+        $multi_imgs = $request->file('multi_img');
+        $product_id = $request->product_id;
+        if ($multi_imgs) {
+            foreach ($multi_imgs as $multi_img) {
+                $name_gen = md5($multi_img->getClientOriginalName()) . strtotime(Carbon::now()) . '.' . $multi_img->getClientOriginalExtension();
+                Image::Make($multi_img)->resize(400, 400)->save(public_path('/upload/products/multi-image/' . $name_gen));
+                $save_multi_img = 'upload/products/multi-image/' . $name_gen;
+
+                MultiImg::create([
+                    'product_id' => $product_id,
+                    'name' => $save_multi_img,
+                ]);
+            }
+        }
+        $notification = [
+            'message' => __('Images added successfully'),
+            'alert-type' => 'success'
+        ];
+        return redirect()->back()->with($notification);
+    }
 }

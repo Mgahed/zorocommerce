@@ -12,7 +12,19 @@
             <!-- Basic Forms -->
             <div class="box">
                 <div class="box-header with-border">
-                    <h4 class="box-title">{{__('Edit Product')}} </h4>
+                    <div class="d-flex">
+                        <span>
+                            <h4 class="box-title">{{__('Edit Product')}} </h4>
+                        </span>
+                        <span class="ml-auto">
+                            <button onclick="openCurrModal({{$product->id}})"
+                                    type="button"
+                                    class="btn btn-primary" data-target="#modal-center-product">
+                                <i class="fa fa-file-image-o"></i>
+                                <i class="fa fa-plus"></i>
+                            </button>
+                        </span>
+                    </div>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -201,7 +213,7 @@
                                         </div> <!-- end 3RD row  -->
 
 
-                                        <div class="row"> <!-- start 4th row  -->
+                                        <div class="row d-none"> <!-- start 4th row  -->
 
                                             <div class="col-md-6">
                                                 <div class="form-group">
@@ -492,6 +504,43 @@
 
     </div>
 
+    <div class="modal center-modal fade" id="modal-center-product" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{__('Multiple Image')}}</h5>
+                    <button onclick="dismiss()" type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{route('product.add.multiimg')}}" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <h5>{{__('Multiple Image')}}</h5>
+                            <div class="controls">
+                                <input type="file" accept="image/png, image/jpg, image/jpeg" name="multi_img[]"
+                                       class="form-control"
+                                       multiple="" id="multiImg">
+                                @error('multi_img')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                                <div class="row" id="preview_img"></div>
+                            </div>
+                        </div>
+                        <br>
+                        <input type="hidden" name="product_id" value="">
+                        @csrf
+                        <input type="submit" class="btn btn-rounded btn-primary float-right" value="{{__('Save')}}">
+                    </form>
+                </div>
+                <div class="modal-footer modal-footer-uniform">
+                    <button onclick="dismiss()" type="button" class="btn btn-rounded btn-danger" data-dismiss="modal">
+                        {{__('Close')}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <script type="text/javascript">
         function mainThamUrl(input) {
@@ -503,6 +552,44 @@
                 reader.readAsDataURL(input.files[0]);
             }
         }
+    </script>
+
+    <script>
+        function openCurrModal(id) {
+            $('input[name="product_id"]').val(id);
+            $('#modal-center-product').modal('show');
+        }
+
+        function dismiss() {
+            $('#modal-center').modal('hide');
+            $('#modal-center-product').modal('hide');
+        }
+
+        $(document).ready(function () {
+            $('#multiImg').on('change', function () { //on file input change
+                if (window.File && window.FileReader && window.FileList && window.Blob) //check File API supported browser
+                {
+                    var data = $(this)[0].files; //this file data
+
+                    $.each(data, function (index, file) { //loop though each file
+                        if (/(\.|\/)(gif|jpe?g|png)$/i.test(file.type)) { //check supported file type
+                            var fRead = new FileReader(); //new filereader
+                            fRead.onload = (function (file) { //trigger function on successful read
+                                return function (e) {
+                                    var img = $('<img/>').addClass('thumb').attr('src', e.target.result).width(80)
+                                        .height(80); //create image element
+                                    $('#preview_img').append(img); //append image to output element
+                                };
+                            })(file);
+                            fRead.readAsDataURL(file); //URL representing the file's data.
+                        }
+                    });
+
+                } else {
+                    alert("Your browser doesn't support File API!"); //if File API is absent
+                }
+            });
+        });
     </script>
 
 

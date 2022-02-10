@@ -83,6 +83,7 @@ Route::group(['prefix' => (new Mcamara\LaravelLocalization\LaravelLocalization)-
             Route::get('/colors-qty/{id}', [ProductController::class, 'ProductColorEdit'])->name('product.color.edit');
             Route::post('/colors-qty-update/{id}', [ProductController::class, 'ProductColorUpdate'])->name('product.color.update');
             Route::post('/colors-add', [ProductController::class, 'ProductColorAdd'])->name('add.product.color');
+            Route::post('/multi-imgs-add', [ProductController::class, 'ProductMultiimgAdd'])->name('product.add.multiimg');
         });
         Route::get('/free-shipping', [AdminController::class, 'FreeShipping'])->name('free.shipping');
         Route::post('/set-free-shipping', [AdminController::class, 'SetFreeShipping'])->name('set.free.shipping');
