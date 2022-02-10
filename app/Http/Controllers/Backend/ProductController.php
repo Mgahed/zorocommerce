@@ -452,9 +452,27 @@ class ProductController extends Controller
         ]);
 
         $notification = [
-                'message' => __('Quantity Updated Successfully'),
-                'alert-type' => 'info'
-            ];
+            'message' => __('Quantity Updated Successfully'),
+            'alert-type' => 'info'
+        ];
         return redirect()->back()->with($notification);
+    }
+
+    public function ProductColorAdd(Request $request)
+    {
+        $product = Product::findOrFail($request->product_id);
+        $final_color_en = $product->color_en . "," . $request->color_en;
+        $final_color_ar = $product->color_ar . "," . $request->color_ar;
+        $product->update([
+            'color_en' => $final_color_en,
+            'color_ar' => $final_color_ar
+        ]);
+
+        ProductColor::create([
+            'color_en' => $request->color_en,
+            'color_ar' => $request->color_ar,
+            'product_color_id' => $request->product_id
+        ]);
+        return redirect()->back();
     }
 }

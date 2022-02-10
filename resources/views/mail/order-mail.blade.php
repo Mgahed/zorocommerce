@@ -2,7 +2,7 @@
 # Invoice No : {{$order['invoice_number']}}
 
 ## Name : {{$order['name']}}<br>
-## Enail : {{$order['email']}}
+## Email : {{$order['email']}}
 @component('mail::table')
     | Amount  | Shipping cost  | Total amount  |
     |:--------:|:--------------:|:-------------:|

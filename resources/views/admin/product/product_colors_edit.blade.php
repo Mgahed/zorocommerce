@@ -20,9 +20,20 @@
 
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title">{{__('Edit Colors')}}</h3>
-                            <span class="text-danger">{{__('total quantity must be not more than')}} <span
-                                    class="totalqty">{{$qty}}</span></span>
+                            <div class="d-flex">
+                                <span>
+                                    <h3 class="box-title">{{__('Edit Colors')}}</h3>
+                                    <span class="text-danger">{{__('total quantity must be not more than')}}
+                                        <span class="totalqty">{{$qty}}</span></span>
+                                </span>
+                                <span class="ml-auto">
+                                    <button onclick="openCurrModal({{$product_colors[0]->product_color_id}})"
+                                            type="button"
+                                            class="btn btn-primary" data-target="#modal-center-product">
+                                        <i class="fa fa-plus-square"></i>
+                                    </button>
+                                </span>
+                            </div>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -105,6 +116,39 @@
 
     </div>
 
+    <div class="modal center-modal fade" id="modal-center-product" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{__('Add color')}}</h5>
+                    <button onclick="dismiss()" type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{route('add.product.color')}}" method="post">
+                        <div class="controls">
+                            <h5>{{__('Color in English')}} <span class="text-danger">*</span></h5>
+                            <input type="text" name="color_en" style="direction: ltr;" class="form-control" required="">
+                        </div>
+                        <br>
+                        <div class="controls">
+                            <h5>{{__('Color in Arabic')}} <span class="text-danger">*</span></h5>
+                            <input type="text" name="color_ar" style="direction: rtl;" class="form-control" required="">
+                        </div>
+                        <br>
+                        <input type="hidden" name="product_id" value="">
+                        @csrf
+                        <input type="submit" class="btn btn-rounded btn-primary float-right" value="{{__('Save')}}">
+                    </form>
+                </div>
+                <div class="modal-footer modal-footer-uniform">
+                    <button onclick="dismiss()" type="button" class="btn btn-rounded btn-danger" data-dismiss="modal">
+                        {{__('Close')}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <script>
@@ -133,6 +177,16 @@
             } else {
                 $('.update-btn').css('display', 'block');
             }
+        }
+
+        function openCurrModal(id) {
+            $('input[name="product_id"]').val(id);
+            $('#modal-center-product').modal('show');
+        }
+
+        function dismiss() {
+            $('#modal-center').modal('hide');
+            $('#modal-center-product').modal('hide');
         }
     </script>
 @endsection
